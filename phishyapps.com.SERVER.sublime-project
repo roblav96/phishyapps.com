@@ -1,0 +1,21 @@
+{
+	"folders": [{
+		"name": "phishyapps.com.SERVER",
+		"path": ".",
+		"folder_exclude_patterns": [
+			"public",
+			"assets",
+			"client",
+			"dist",
+			"node_modules"
+		],
+		"file_exclude_patterns": [
+			"*.tsconfig.*",
+			"*vue*",
+			"*client*",
+			"*debug*",
+			"*license*",
+			"*readme*"
+		]
+	}]
+}

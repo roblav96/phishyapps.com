@@ -1,0 +1,12 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"module": "commonjs"
+	},
+	"exclude": [
+		"../src/assets",
+		"../src/client",
+		"../dist",
+		"../node_modules"
+	]
+}

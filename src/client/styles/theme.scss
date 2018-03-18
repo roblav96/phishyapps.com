@@ -1,0 +1,98 @@
+// 
+@import '~ibm-design-colors';
+@import '~bulma/sass/utilities/functions';
+@import '~bulma/sass/utilities/initial-variables';
+// 
+// ████  COLORS  ████
+// 
+// $_tint: 'cool';
+// // 
+// $black: rgb(14, 14, 14);
+// $black-bis: rgb(26, 26, 26);
+// $black-ter: rgb(39, 39, 39);
+// // 
+// $grey-darker: color($_tint + '-gray', 90);
+// $grey-dark: color($_tint + '-gray', 70);
+// $grey: color($_tint + '-gray', 50);
+// $grey-light: color($_tint + '-gray', 30);
+// $grey-lighter: color($_tint + '-gray', 20);
+// // 
+// $white-ter: color($_tint + '-white', 3);
+// $white-bis: color($_tint + '-white', 1);
+// $white: color('white', 0);
+// 
+$orange: color('orange', 30);
+$yellow: color('gold', 20);
+$green: color('green', 30);
+$turquoise: color('teal', 30);
+$cyan: color('aqua', 30);
+$blue: color('blue', 50);
+$purple: color('indigo', 60);
+$red: color('red', 50);
+// 
+$primary: #9855D4;
+$primary-light: #AF6EE8;
+$secondary: #FDD600;
+$secondary-light: #FDE876;
+$accent: #562F72;
+// 
+$info: $cyan;
+$success: $green;
+$warning: $orange;
+$danger: $red;
+// 
+// ████  VARIABLES  ████
+// 
+$link: $primary;
+// 
+$modal-content-width: 480px;
+$modal-background-background-color: rgba($black, 0.66);
+$button-disabled-opacity: 0.33;
+// 
+// $light: $white-bis;
+// $dark: $grey-darker;
+// // 
+// $background: $white-ter;
+// $body-background-color: $white-bis;
+// // 
+// $text: $grey-dark;
+// $text-light: $grey;
+// $text-strong: $grey-darker;
+// 
+// ████  INVERTS  ████
+// 
+@function inverted($color) {
+	@if (colorLuminance($color) > 0.55) {
+		@return $dark;
+	}
+	@return $light;
+}
+
+// 
+@import '~bulma/sass/utilities/derived-variables';
+// 
+$orange-invert: inverted($orange);
+$yellow-invert: inverted($yellow);
+$green-invert: inverted($green);
+$turquoise-invert: inverted($turquoise);
+$cyan-invert: inverted($cyan);
+$blue-invert: inverted($blue);
+$purple-invert: inverted($purple);
+$red-invert: inverted($red);
+// 
+$info-invert: inverted($info);
+$success-invert: inverted($success);
+$warning-invert: inverted($warning);
+$danger-invert: inverted($danger);
+// 
+$text-invert: inverted($text);
+$link-invert: inverted($link);
+// 
+$primary-invert: inverted($primary);
+$primary-light-invert: inverted($primary-light);
+$secondary-invert: inverted($secondary);
+$secondary-light-invert: inverted($secondary-light);
+$accent-invert: inverted($accent);
+// 
+// 
+//

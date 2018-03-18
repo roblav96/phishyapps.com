@@ -1,0 +1,12 @@
+{
+	"folders": [{
+		"name": "phishyapps.com.STYLES.DEBUG",
+		"path": "src/client/styles"
+	}, {
+		"name": "Bulma",
+		"path": "node_modules/bulma/sass"
+	}, {
+		"name": "Buefy",
+		"path": "node_modules/buefy/src/scss"
+	}]
+}
