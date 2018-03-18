@@ -24,7 +24,7 @@ export default class extends Vue {
 		this.busy = true
 		http.post('/search', { query }).then(response => {
 			console.log('response >', response)
-		}).finally(() => {
+		}).catch(error => error).finally(() => {
 			this.busy = false
 		})
 	}

@@ -88,7 +88,4 @@ module.exports = {
 
 }
 
-// resolves occasional hot-reload lag by keeping the terminal awake
-if (process.env.NODE_ENV == 'development') require('ora')({ spinner: 'runner', interval: 1000, hideCursor: false, stream: process.stdout }).start();
-
 

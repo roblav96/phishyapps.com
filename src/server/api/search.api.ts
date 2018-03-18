@@ -18,26 +18,18 @@ fastify.route({
 	schema: {
 		body: {
 			type: 'object',
-			required: ['query'],
 			properties: {
 				query: { type: 'string' },
 			},
-		},
-		response: {
-			200: {
-				type: 'object',
-				required: ['results'],
-				properties: {
-					results: { type: 'array', items: { type: 'number' } },
-				},
-			},
+			required: ['query'],
 		},
 	},
 	handler: async function(request, reply) {
 		let query = common.string.clean(request.body.query)
 		console.log('search query >', JSON.stringify(query, null, 4))
 		let results = await stores.search(query)
-		return { results }
+		console.log('results.length >', results.length)
+		return results
 	},
 })
 

@@ -102,6 +102,7 @@ declare module 'google-play-scraper' {
 		lang?: string
 		country?: string
 		fullDetail?: boolean
+		throttle?: number
 		price?: 'all' | 'free' | 'paid'
 	}): Promise<SearchResult[]>
 

@@ -71,7 +71,6 @@
 		"eyes": "latest",
 		"node-sass": "latest",
 		"npm-run-all": "latest",
-		"ora": "latest",
 		"rimraf": "latest",
 		"sass-loader": "latest",
 		"source-map-support": "latest",

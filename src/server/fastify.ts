@@ -11,6 +11,7 @@ import * as pino from 'pino'
 import * as cors from 'cors'
 import * as boom from 'boom'
 import * as cookie from 'cookie'
+import * as got from 'got'
 import * as security from './services/security'
 import * as redis from './adapters/redis'
 
@@ -58,10 +59,9 @@ import './api/search.api'
 
 
 
-// console.log('\nprocess.PORT >', process.PORT, '\nprocess.HOST >', process.HOST)
 fastify.listen(process.PORT, process.HOST, function(error) {
 	if (error) return console.error('fastify listen Error >', error);
-	console.info('fastify.listen >', fastify.server.address().address + ':' + fastify.server.address().port)
+	console.info('fastify listen >', fastify.server.address().address + ':' + fastify.server.address().port)
 })
 
 
