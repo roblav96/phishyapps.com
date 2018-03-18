@@ -2,7 +2,8 @@
 
 import * as eyes from 'eyes'
 import * as _ from 'lodash'
-import * as common from '../../common'
+import * as core from '../../common/core'
+import * as security from '../../common/security'
 
 import fastify from '../fastify'
 import * as forge from 'node-forge'
@@ -59,7 +60,7 @@ export async function preHandler(request: FastifyRequest, reply: FastifyReply) {
 // let message = doc.uuid + doc.bytes
 export function docHmac(uuid: string, bytes: string, hostname: string, prime: string) {
 	// console.log('docHmac', 'uuid', uuid, 'bytes', bytes, 'hostname', hostname, 'prime', prime)
-	return common.security.hmac(uuid + bytes + hostname, prime)
+	return security.hmac(uuid + bytes + hostname, prime)
 }
 
 
@@ -77,7 +78,7 @@ export function reqip(request: FastifyRequest) {
 
 
 declare global {
-	namespace Security {
+	namespace User {
 		interface Doc {
 			id: string
 			uuid: string

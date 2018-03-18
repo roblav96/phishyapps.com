@@ -22,7 +22,7 @@ export default class extends Vue {
 	syncResults(query: string) {
 		if (!query) return this.results.splice(0);
 		this.busy = true
-		http.post('/search', { query }).then(response => {
+		http.post('/search', { query }).then((response: Stores.SearchResult[]) => {
 			console.log('response >', response)
 		}).catch(error => error).finally(() => {
 			this.busy = false

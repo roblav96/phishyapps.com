@@ -3,7 +3,7 @@
 import chalk from 'chalk'
 import * as eyes from 'eyes'
 import * as _ from 'lodash'
-import * as common from '../../common'
+import * as core from '../../common/core'
 
 import * as ioredis from 'ioredis'
 
@@ -17,7 +17,7 @@ class Redis extends ioredis {
 			host: process.env.REDIS_HOST,
 			port: (Number.parseInt(process.env.REDIS_PORT) || 6379) + offset,
 			password: process.env.REDIS_PASSWORD,
-			connectionName: '[' + process.INSTANCE + '][' + common.string.id(process.NAME) + '][' + name.toUpperCase() + '][' + NODE_ENV + ']',
+			connectionName: '[' + process.INSTANCE + '][' + core.string.id(process.NAME) + '][' + name.toUpperCase() + '][' + NODE_ENV + ']',
 		} as ioredis.RedisOptions
 
 		if (PRODUCTION) {
@@ -47,19 +47,19 @@ class Redis extends ioredis {
 	}
 
 	tohset(item: any): any {
-		if (!common.object.is(item)) return {};
+		if (!core.object.is(item)) return {};
 		let toitem = {}
 		Object.keys(item).forEach(function(key) {
 			let value = item[key]
 			if (value == null) value = null;
-			if (Number.isFinite(value)) value = common.number.round(value, 8);
+			if (Number.isFinite(value)) value = core.number.round(value, 8);
 			toitem[key] = JSON.stringify(value)
 		})
 		return toitem
 	}
 
 	fromhget(item: any): any {
-		if (!common.object.is(item)) return {};
+		if (!core.object.is(item)) return {};
 		Object.keys(item).forEach(function(k) {
 			item[k] = JSON.parse(item[k])
 		})

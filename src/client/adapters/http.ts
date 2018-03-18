@@ -1,7 +1,7 @@
 // 
 
 import * as _ from 'lodash'
-import * as common from '@/common'
+import * as core from '@/common/core'
 import got from 'got'
 import vm from '@/client/vm'
 
@@ -22,7 +22,7 @@ function request(config: Partial<Http.RequestConfig>): Promise<any> {
 	return Promise.resolve().then(function() {
 
 		config.json = true
-		let pconfig = config.isproxy ? common.object.clone(config) : undefined
+		let pconfig = config.isproxy ? core.object.clone(config) : undefined
 
 		if (!Number.isFinite(config.timeout as any)) config.timeout = 10000;
 		if (!Number.isFinite(config.retries as any)) config.retries = 5;
@@ -38,7 +38,7 @@ function request(config: Partial<Http.RequestConfig>): Promise<any> {
 			'x-platform': 'web',
 			'x-silent': config.silent,
 		})
-		common.object.compact(config.headers)
+		core.object.compact(config.headers)
 
 		if (config.isproxy) {
 			config.url = process.DOMAIN + '/api/proxy'

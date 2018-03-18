@@ -2,7 +2,7 @@
 
 import * as eyes from 'eyes'
 import * as _ from 'lodash'
-import * as common from '../../common'
+import * as core from '../../common/core'
 
 import fastify from '../fastify'
 import * as boom from 'boom'
@@ -17,16 +17,13 @@ fastify.route({
 	schema: {
 		body: {
 			type: 'object',
-			properties: {
-				response: { type: 'string' },
-			},
+			properties: { response: { type: 'string' }, },
+			required: ['response'],
 		},
 		response: {
 			200: {
 				type: 'object',
-				properties: {
-					success: { type: 'boolean' },
-				},
+				properties: { success: { type: 'boolean' }, },
 			},
 		},
 	},
@@ -42,7 +39,7 @@ fastify.route({
 			throw boom.badRequest('Recaptcha errors, ' + JSON.stringify(body['error-codes']))
 		}
 		if (!body.success) throw boom.badRequest('Recaptcha unsuccessful');
-		await redis.main.setex('security:human:' + request.doc.uuid, 300, true)
+		await redis.main.setex('users:human:' + request.doc.uuid, 300, true)
 		return { success: body.success }
 	},
 })
