@@ -17,7 +17,7 @@ import * as redis from './adapters/redis'
 
 
 const fastify = Fastify<http.Server, http.IncomingMessage, http.ServerResponse>({
-	logger: { level: 'info', prettyPrint: { forceColor: true, levelFirst: true, }, },
+	// logger: { level: 'info', prettyPrint: { forceColor: true, levelFirst: true, }, },
 })
 export default fastify
 
@@ -30,7 +30,7 @@ fastify.setNotFoundHandler(async function(request, reply) {
 })
 
 fastify.setErrorHandler(async function(error: boom & { validation: any }, request, reply) {
-	console.error('fastify.setErrorHandler Error >', error)
+	console.error('fastify setErrorHandler Error >', error)
 	if (Array.isArray(error.validation)) {
 		let validation = error.validation[0]
 		error = boom.preconditionFailed('Parameter `' + validation.dataPath.substr(1) + '` ' + validation.message) as any
@@ -58,9 +58,9 @@ import './api/search.api'
 
 
 
-console.log('\nprocess.PORT >', process.PORT, '\nprocess.HOST >', process.HOST)
+// console.log('\nprocess.PORT >', process.PORT, '\nprocess.HOST >', process.HOST)
 fastify.listen(process.PORT, process.HOST, function(error) {
-	if (error) return console.error('fastify.listen Error >', error);
+	if (error) return console.error('fastify listen Error >', error);
 	console.info('fastify.listen >', fastify.server.address().address + ':' + fastify.server.address().port)
 })
 

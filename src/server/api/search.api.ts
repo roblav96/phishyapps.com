@@ -28,7 +28,7 @@ fastify.route({
 				type: 'object',
 				required: ['results'],
 				properties: {
-					results: { type: 'array' },
+					results: { type: 'array', items: { type: 'number' } },
 				},
 			},
 		},
