@@ -20,7 +20,7 @@ global.PRODUCTION = NODE_ENV == 'production'
 module.exports = {
 
 	outputDir: 'dist/client',
-	dll: DEVELOPMENT, // faster incremental recompilation, slower initial build
+	// dll: DEVELOPMENT, // faster incremental recompilation, slower initial build
 	css: { sourceMap: false }, // only enable when needed
 	vueLoader: { hotReload: false }, // hot reload makes debugging difficult
 
@@ -30,17 +30,7 @@ module.exports = {
 
 		if (DEVELOPMENT) {
 			config.devtool = 'source-map'
-			// assets should not be bundled as long URI strings inside .js bundles
-			// config.module.rules.forEach(function(rule) {
-			// 	if (!Array.isArray(rule.use)) return;
-			// 	rule.use.forEach(function(use) {
-			// 		if (use.loader != 'url-loader') return;
-			// 		use.loader = 'file-loader'
-			// 		delete use.options.limit
-			// 	})
-			// })
-			// improves memory footprint by reducing number of fs.stat calls
-			config.plugins.push(new webpack.WatchIgnorePlugin([/node_modules/, /dist/, /assets/, /server/]))
+			config.plugins.push(new webpack.WatchIgnorePlugin([/node_modules/, /dist/, /server/, /assets/, /public/, /config/]))
 		}
 
 		// bundle size debugger
@@ -56,13 +46,13 @@ module.exports = {
 			args[0]['process.env'].DOMAIN = `"${(DEVELOPMENT ? 'http://dev.' : 'https://') + package.domain}"`
 			// import variables defined in ./config/
 			let env = dotenv.config({ path: path.resolve(process.cwd(), 'config/client.env') }).parsed || {}
-			Object.keys(env).forEach(k => args[0]['process.env'][k] = `"${env[k]}"`)
-			env = dotenv.config({ path: path.resolve(process.cwd(), 'config/client.' + NODE_ENV + '.env') }).parsed || {}
+			Object.assign(env, dotenv.config({ path: path.resolve(process.cwd(), 'config/client.' + NODE_ENV + '.env') }).parsed || {})
 			Object.keys(env).forEach(k => args[0]['process.env'][k] = `"${env[k]}"`)
 			return args
 		})
 		config.plugin('fork-ts-checker').tap(function(args) {
 			args[0].tsconfig = 'config/.client.tsconfig.json'
+			args[0].workers = Math.ceil(require('os').cpus().length / 2)
 			return args
 		})
 		config.plugins.delete('no-emit-on-errors')

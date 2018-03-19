@@ -14,7 +14,7 @@ class Redis extends ioredis {
 	static getOpts(name: string, offset: number) {
 		let opts = {
 			db: 0, dropBufferSupport: true,
-			host: process.env.REDIS_HOST,
+			host: process.env.REDIS_HOST || 'localhost',
 			port: (Number.parseInt(process.env.REDIS_PORT) || 6379) + offset,
 			password: process.env.REDIS_PASSWORD,
 			connectionName: '[' + process.INSTANCE + '][' + core.string.id(process.NAME) + '][' + name.toUpperCase() + '][' + NODE_ENV + ']',

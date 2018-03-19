@@ -24,6 +24,7 @@ fastify.route({
 			200: {
 				type: 'object',
 				properties: { success: { type: 'boolean' }, },
+				required: ['success'],
 			},
 		},
 	},

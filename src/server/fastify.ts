@@ -36,7 +36,6 @@ fastify.setErrorHandler(async function(error: boom & { validation: any }, reques
 		let validation = error.validation[0]
 		error = boom.preconditionFailed('Parameter `' + validation.dataPath.substr(1) + '` ' + validation.message) as any
 	} else if (!error.isBoom) {
-		// console.error('setErrorHandler >', error)
 		error = boom.internal(error.message) as any
 	}
 	reply.code(error.output.statusCode)

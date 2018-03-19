@@ -20,6 +20,7 @@ fastify.route({
 			200: {
 				type: 'object',
 				properties: { token: { type: 'string' } },
+				required: ['token'],
 			},
 		},
 	},

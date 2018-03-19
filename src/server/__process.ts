@@ -28,6 +28,7 @@ process.MASTER = cluster.isMaster
 process.WORKER = cluster.isWorker
 
 dotenv.config({ path: path.resolve(process.cwd(), 'config/server.' + NODE_ENV + '.env') })
+dotenv.config({ path: path.resolve(process.cwd(), 'config/server.env') })
 process.NAME = process.env.npm_package_name
 process.VERSION = process.env.npm_package_version
 process.DOMAIN = (DEVELOPMENT ? 'http://dev.' : 'https://') + process.env.npm_package_domain

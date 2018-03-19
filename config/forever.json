@@ -1,0 +1,7 @@
+{
+	"uid": "phishyapps.com",
+	"append": true,
+	"killTree": true,
+	"watch": false,
+	"script": "dist/server/main.js"
+}

@@ -4,8 +4,10 @@
 		"module": "commonjs"
 	},
 	"exclude": [
-		"../src/assets",
 		"../src/client",
+		"../src/assets",
+		"../config",
+		"../public",
 		"../dist",
 		"../node_modules"
 	]
