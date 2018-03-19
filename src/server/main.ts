@@ -1,6 +1,7 @@
 // 
 import './__process'
-if (DEVELOPMENT) process.INSTANCES = 1;
+// if (DEVELOPMENT) process.INSTANCES = 1;
+process.INSTANCES = 1
 // 
 
 import chalk from 'chalk'
