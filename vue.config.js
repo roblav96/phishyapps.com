@@ -15,12 +15,17 @@ global.NODE_ENV = process.env.NODE_ENV || 'development'
 global.DEVELOPMENT = NODE_ENV == 'development'
 global.PRODUCTION = NODE_ENV == 'production'
 
+// eyes.inspect(process.env.NODE_ENV, 'process.env.NODE_ENV')
+// eyes.inspect(global.NODE_ENV, 'NODE_ENV')
+// eyes.inspect(global.DEVELOPMENT, 'DEVELOPMENT')
+// eyes.inspect(global.PRODUCTION, 'PRODUCTION')
+
 
 
 module.exports = {
 
 	outputDir: 'dist/client',
-	dll: DEVELOPMENT, // faster incremental recompilation, slower initial build
+	// dll: DEVELOPMENT, // faster incremental recompilation, slower initial build
 	css: { sourceMap: false }, // only enable when needed
 	vueLoader: { hotReload: false }, // hot reload makes debugging difficult
 
@@ -28,14 +33,12 @@ module.exports = {
 		config.entry.app = './src/client/main.ts'
 		delete config.node.process // required for `got` http client
 
-		config.output.filename = '[name].bundle.[hash].js'
-		config.output.chunkFilename = '[chunkhash].chunk.[hash].js'
-
 		if (DEVELOPMENT) {
-			// if (process.env.NODE_ENV == 'development') config.watch = true;
 			config.devtool = 'source-map'
-			config.output.filename = '[name].bundle.js'
-			config.output.chunkFilename = 'chunk.[name].js'
+
+			// config.watch = true
+			// config.stats = { warnings: false, modules: false, performance: false, excludeAssets: [/fonts\//, /img\//] }
+
 			// assets should not be bundled as long URI strings inside .js bundles
 			config.module.rules.forEach(function(rule) {
 				if (!Array.isArray(rule.use)) return;
@@ -45,8 +48,10 @@ module.exports = {
 					delete use.options.limit
 				})
 			})
+
 			// improves memory usage by reducing number of fs.stat calls
 			config.plugins.push(new webpack.WatchIgnorePlugin([/node_modules/, /dist/, /assets/, /server/]))
+
 		}
 
 		// // isolate node_modules
@@ -65,6 +70,7 @@ module.exports = {
 
 	chainWebpack: function(config) {
 		config.plugin('define').tap(function(args) {
+			args[0]['process.env'].NODE_ENV = `"${NODE_ENV}"`
 			// apply package properties as env variables
 			args[0]['process.env'].NAME = `"${package.name}"`
 			args[0]['process.env'].VERSION = `"${package.version}"`

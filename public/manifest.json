@@ -1,6 +1,6 @@
 {
-	"name": "Phishy Apps",
-	"short_name": "Phishy Apps",
+	"name": "PhishyApps",
+	"short_name": "PhishyApps",
 	"icons": [{
 			"src": "/assets/android-chrome-192x192.png",
 			"sizes": "192x192",

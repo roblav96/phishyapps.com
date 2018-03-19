@@ -3,6 +3,7 @@
 		"name": "phishyapps.com.CLIENT",
 		"path": ".",
 		"folder_exclude_patterns": [
+			"public/img",
 			"assets",
 			"server",
 			"dist",
