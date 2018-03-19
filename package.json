@@ -12,7 +12,7 @@
 		"client:build": "rimraf dist/client && cross-env NODE_ENV=production vue-cli-service build",
 		"server:dev": "rimraf dist/server && tsc-watch -p config/.server.tsconfig.json --onSuccess 'cross-env NODE_ENV=development node dist/server/main.js'",
 		"server:build": "tsc -p config/.server.tsconfig.json && cross-env NODE_ENV=production node dist/server/main.js",
-		"server:forever": "npm run server:build && cross-env NODE_ENV=production forever start dist/server/main.js"
+		"server:forever": "tsc -p config/.server.tsconfig.json && cross-env NODE_ENV=production forever start dist/server/main.js"
 	},
 	"dependencies": {
 		"@ibm/plex": "latest",
