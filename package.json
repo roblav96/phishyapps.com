@@ -10,7 +10,7 @@
 		"client:dev": "cross-env NODE_ENV=development vue-cli-service serve --mode development",
 		"client:dev:legacy": "rimraf dist/client && cross-env NODE_ENV=development webpack --config node_modules/@vue/cli-service/webpack.config.js",
 		"client:build": "rimraf dist/client && cross-env NODE_ENV=production vue-cli-service build --mode production",
-		"client:deploy": "npm run client:build && sudo cp dist/client /var/www/phishyapps.com && sudo chown -R www-data:www-data /var/www/phishyapps.com && sudo chmod -R 755 /var/www/phishyapps.com",
+		"client:deploy": "npm run client:build && sudo rm -rf /var/www/phishyapps.com/client && sudo cp -r dist/client /var/www/phishyapps.com && sudo chown -R www-data:www-data /var/www/phishyapps.com && sudo chmod -R 755 /var/www/phishyapps.com",
 		"server:dev": "rimraf dist/server && tsc-watch -p config/.server.tsconfig.json --onSuccess 'cross-env NODE_ENV=development node dist/server/main.js'",
 		"server:deploy": "rimraf dist/server && tsc -p config/.server.tsconfig.json && npm run server:start",
 		"server:start": "forever stop phishyapps.com || true && rimraf ~/.forever/phishyapps.com.log && cross-env NODE_ENV=production forever start config/forever.json && npm run server:logs",
