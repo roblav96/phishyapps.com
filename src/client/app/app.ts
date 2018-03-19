@@ -3,7 +3,6 @@
 import * as Vts from 'vue-property-decorator'
 import { mixins as Mixins } from 'vue-class-component'
 import Vue from 'vue'
-import VUtils from '@/client/mixins/v-utils'
 
 
 
@@ -12,21 +11,13 @@ import VUtils from '@/client/mixins/v-utils'
 		'v-navbar': () => import('@/client/components/navbar/navbar'),
 	},
 })
-export default class extends Mixins(VUtils) {
+export default class extends Vue {
 
-	created() {
-
-	}
-
+	initing = true
 	mounted() {
-
+		setTimeout(() => this.initing = false, 100)
+		setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 100)
 	}
-
-	beforeDestroy() {
-
-	}
-
-
 
 }
 

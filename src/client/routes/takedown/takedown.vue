@@ -1,5 +1,5 @@
 <!--  -->
-<script lang="ts" src="./account.ts"></script>
+<script lang="ts" src="./takedown.ts"></script>
 
 <style>
 /**/
@@ -12,7 +12,7 @@
 	<section class="hero is-light is-fullheight">
 		<div class="hero-body fx-align-items-start">
 			<div class="container">
-				<p class="title">Account</p>
+				<p class="title">Take Down</p>
 				<p class="subtitle">Work in progress...</p>
 			</div>
 		</div>

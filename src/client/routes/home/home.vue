@@ -4,10 +4,6 @@
 <style>
 /**/
 
-html.has-navbar-fixed-top .hero.is-fullheight {
-	min-height: calc(100vh - 3.25rem);
-}
-
 div.home-boxes span.icon {
 	width: initial;
 	height: initial;
@@ -42,6 +38,10 @@ div.home-boxes span.icon > i.mdi:before {
 								<i>'phishy'</i> apps published on the iTunes App Store & Google Play Store. Managing these fake
 								malicious imposters is now possible.
 							</h2>
+							<router-link class="button is-medium is-light" :to="{ name: 'search' }">
+								<b-icon icon="security" />
+								<span class="t-500">Secure My App</span>
+							</router-link>
 						</div>
 					</div>
 				</div>

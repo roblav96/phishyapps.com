@@ -272,6 +272,10 @@ $letter in (width: w, height: h) {
 	}
 }
 
+.t-lh-initial {
+	line-height: initial !important;
+}
+
 // 
 // ████  VERTICAL ALIGN  ████
 // 
@@ -528,6 +532,73 @@ $_sizes: (0, 25, 50, 75, 100);
 	.h-#{$_size} {
 		height: percentage($_size/100) !important;
 	}
+}
+
+.min-w-initial {
+	min-width: initial !important;
+}
+
+.max-w-initial {
+	max-width: initial !important;
+}
+
+.w-initial {
+	width: initial !important;
+}
+
+.min-h-initial {
+	min-height: initial !important;
+}
+
+.max-h-initial {
+	max-height: initial !important;
+}
+
+.h-initial {
+	height: initial !important;
+}
+
+// 
+// ████  ANIMATIONS  ████
+// 
+.animated-loading {
+	opacity: 0;
+}
+
+.will-animated {
+	will-change: transform, opacity;
+}
+
+.animated-slow {
+	animation-duration: 2s;
+}
+
+.animated-slower {
+	animation-duration: 3s;
+}
+
+.animated-slowest {
+	animation-duration: 5s;
+}
+
+.animated-quick {
+	animation-duration: 0.75s;
+}
+
+.animated-fast {
+	animation-duration: 0.5s;
+}
+
+.animated-faster {
+	animation-duration: 0.3s;
+}
+
+.animated-fastest {
+	animation-duration: 0.2s;
+}
+
+.animated-fastester {
+	animation-duration: 0.1s;
 }
 
 // 

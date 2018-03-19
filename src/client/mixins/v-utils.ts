@@ -3,6 +3,7 @@
 import * as Vts from 'vue-property-decorator'
 import { mixins as Mixins } from 'vue-class-component'
 import Vue from 'vue'
+import _ from 'lodash'
 
 
 
@@ -15,6 +16,10 @@ export default class extends Vue {
 	v_name = process.NAME
 	v_version = process.VERSION
 	v_domain = process.DOMAIN
+
+	v_truncate(input: string, length = 64) {
+		return _.truncate(input, { length })
+	}
 
 
 

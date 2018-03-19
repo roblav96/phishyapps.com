@@ -15,6 +15,7 @@
 	},
 	"dependencies": {
 		"@ibm/plex": "latest",
+		"animate.css": "latest",
 		"app-store-scraper": "latest",
 		"boom": "latest",
 		"buefy": "latest",

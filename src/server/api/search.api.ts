@@ -25,10 +25,10 @@ fastify.route({
 		let query = core.string.clean(request.body.query, true)
 		let results = await stores.search(query)
 		results.forEach(function(result) {
-			let desc = result.appstore ? result.description : result.summary
+			let desc = result.apple ? result.description : result.summary
 			let input = core.string.clean(result.title + ' ' + desc, true)
 			let match = fuzzy.match(query, input)
-			result.fuzzy = match ? match.score : 1
+			result.fuzzy = match ? match.score : 0
 		})
 		results.sort((a, b) => b.fuzzy - a.fuzzy)
 		return results

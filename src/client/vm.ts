@@ -1,5 +1,6 @@
 // 
 
+import 'animate.css'
 import '@ibm/plex/css/ibm-plex.css'
 import 'mdi/css/materialdesignicons.css'
 import '@/client/services/pwa-service-worker'

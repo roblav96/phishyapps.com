@@ -15,10 +15,12 @@ export function search(query: string) {
 		playstore.search({ term: query, fullDetail: false }).catch(error => { console.error('search playstore Error >', error); return [] }),
 	]).then(function(resolved: any[][]) {
 		resolved[0].forEach(function(aresult: Stores.SearchResult) {
-			aresult.appstore = true
+			aresult.platform = 'apple'
+			aresult.apple = true
 		})
 		resolved[1].forEach(function(presult: Stores.SearchResult) {
-			presult.playstore = true
+			presult.platform = 'android'
+			presult.android = true
 			if (presult.icon) presult.icon = 'https:' + presult.icon;
 		})
 		return _.flatten(resolved) as Stores.SearchResult[]

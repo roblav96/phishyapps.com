@@ -10,8 +10,9 @@ import * as playstore from 'google-play-scraper'
 declare global {
 	namespace Stores {
 		type SearchResult = appstore.SearchResult & playstore.SearchResult & {
-			appstore: boolean
-			playstore: boolean
+			apple: boolean
+			android: boolean
+			platform: 'apple' | 'android'
 			fuzzy: number
 		}
 	}

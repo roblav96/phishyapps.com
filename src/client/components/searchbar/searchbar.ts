@@ -7,30 +7,23 @@ import _ from 'lodash'
 import fuzzy from 'fuzzy'
 import * as core from '@/common/core'
 import * as http from '@/client/adapters/http'
+import VUtils from '@/client/mixins/v-utils'
 
 
 
 @Vts.Component
-export default class extends Vue {
+export default class extends Mixins(VUtils) {
 
 	mounted() {
-		setTimeout(() => {
-			this.query = 'poloniex'
-		}, 300)
+		// if (DEVELOPMENT) setTimeout(() => this.query = 'poloniex', 300);
 	}
 
 	busy = false
 	query = ''
 	results = []
 
-	v_icon(result: Stores.SearchResult) {
-		return result.appstore ? 'apple' : 'android'
-	}
-	v_title(title: string) {
-		return _.truncate(title, { length: 64 })
-	}
 	v_desc(result: Stores.SearchResult) {
-		let desc = result.appstore ? result.description : result.summary
+		let desc = result.apple ? result.description : result.summary
 		return _.truncate(desc, { length: 128 })
 	}
 
@@ -50,7 +43,7 @@ export default class extends Vue {
 	}
 
 	onselect(result: Stores.SearchResult) {
-		console.log('result >', JSON.stringify(result, null, 4))
+		// console.log('result >', JSON.stringify(result, null, 4))
 	}
 
 
