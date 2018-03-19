@@ -17,7 +17,7 @@ import * as dotenv from 'dotenv'
 
 
 
-global.NODE_ENV = process.env.NODE_ENV || 'development'
+global.NODE_ENV = process.env.NODE_ENV
 global.DEVELOPMENT = NODE_ENV == 'development'
 global.PRODUCTION = NODE_ENV == 'production'
 
@@ -92,9 +92,9 @@ if (DEVELOPMENT) {
 
 if (process.MASTER) {
 	process.stdout.write('\n\n' +
-		'█ ' + chalk.underline.magenta(process.NAME) + '\n' +
-		'█ ' + NODE_ENV + '\n' +
-		'█ ' + process.HOST + ':' + (process.PORT + 1) + '\n'
+		chalk.magentaBright('█') + ' ' + chalk.underline.bold(process.NAME) + '\n' +
+		chalk.magentaBright('█') + ' ' + NODE_ENV + '\n' +
+		chalk.magentaBright('█') + ' ' + process.HOST + ':' + (process.PORT + 1) + '\n'
 	)
 }
 
