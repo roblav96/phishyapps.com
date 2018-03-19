@@ -30,7 +30,7 @@ export function generatePrime(size: number): Promise<string> {
 	})
 }
 
-export function generatePemKeyPair(size: number): Promise<User.PemKeyPair> {
+export function generatePemKeyPair(size: number): Promise<Security.PemKeyPair> {
 	return new Promise(function(resolve, reject) {
 		let opts = { bits: size, workers: -1 } as any
 		// if (!core.isNodejs) opts.workerScript = '/prime.worker.min.js';
@@ -42,7 +42,7 @@ export function generatePemKeyPair(size: number): Promise<User.PemKeyPair> {
 		return Promise.resolve({
 			publicPem: forge.pki.publicKeyToPem(keypair.publicKey),
 			privatePem: forge.pki.privateKeyToPem(keypair.privateKey),
-		} as User.PemKeyPair)
+		} as Security.PemKeyPair)
 	})
 }
 
@@ -73,7 +73,7 @@ export function decrypt<T = any>(encrypted: T, privatePem: string): T {
 
 
 declare global {
-	namespace User {
+	namespace Security {
 		interface PemKeyPair {
 			publicPem: string
 			privatePem: string

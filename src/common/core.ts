@@ -41,9 +41,9 @@ export const valid = {
 
 export const string = {
 	is(value): value is string { return typeof value == 'string' },
-	id(id: string, tolower = false) {
-		id = id.replace(/\W+/g, '').trim()
-		return !tolower ? id : id.toLowerCase()
+	id(value: string, tolower = false) {
+		value = value.replace(/\W+/g, '').trim()
+		return !tolower ? value : value.toLowerCase()
 	},
 	clean(value: string, tolower = false) {
 		value = value.replace(/[^a-zA-Z0-9-_. ]/g, ' ').replace(/\s\s+/g, ' ').trim()
@@ -150,10 +150,6 @@ export const array = {
 		items.forEach((v, i) => chunks[i % chunks.length].push(v))
 		return chunks
 	},
-	// ichunk<T>(items: T[]): T[] {
-	// 	if (process.MASTER) return items;
-	// 	return array.chunks(items, process.INSTANCES)[process.INSTANCE]
-	// },
 	merge<T>(target: T[], source: T[], key: string) {
 		source.forEach(function(item, i) {
 			let found = target.find(v => v && v[key] == item[key])
@@ -179,7 +175,7 @@ export const json = {
 		}
 		return false
 	},
-	/** ████ ONLY use assuming target as object */
+	/** ████  use assuming target as object  */
 	parse<T>(target: T): T {
 		return json.is(target) ? JSON.parse(target as any) : target
 	},

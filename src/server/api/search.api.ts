@@ -3,12 +3,11 @@
 import * as eyes from 'eyes'
 import * as _ from 'lodash'
 import * as core from '../../common/core'
-import * as stores from '../../common/stores'
 
 import fastify from '../fastify'
 import * as boom from 'boom'
-import * as got from 'got'
-import * as redis from '../adapters/redis'
+import * as fuzzy from 'fuzzy'
+import * as stores from '../adapters/stores'
 
 
 
@@ -23,10 +22,15 @@ fastify.route({
 		},
 	},
 	handler: async function(request, reply) {
-		let query = core.string.clean(request.body.query)
-		// console.log('search query >', JSON.stringify(query, null, 4))
+		let query = core.string.clean(request.body.query, true)
 		let results = await stores.search(query)
-		// console.log('results.length >', results.length)
+		results.forEach(function(result) {
+			let desc = result.appstore ? result.description : result.summary
+			let input = core.string.clean(result.title + ' ' + desc, true)
+			let match = fuzzy.match(query, input)
+			result.fuzzy = match ? match.score : 1
+		})
+		results.sort((a, b) => b.fuzzy - a.fuzzy)
 		return results
 	},
 })

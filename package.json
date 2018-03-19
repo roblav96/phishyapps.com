@@ -26,6 +26,7 @@
 		"fastify": "latest",
 		"fastify-cookie": "latest",
 		"fingerprintjs2": "latest",
+		"fuzzy": "latest",
 		"google-play-scraper": "latest",
 		"got": "latest",
 		"ibm-design-colors": "latest",

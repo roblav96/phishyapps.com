@@ -6,9 +6,8 @@ import * as core from '../../common/core'
 import * as security from '../../common/security'
 
 import fastify from '../fastify'
+import * as boom from 'boom'
 import * as users from '../services/users'
-import * as got from 'got'
-import * as forge from 'node-forge'
 import * as redis from '../adapters/redis'
 
 

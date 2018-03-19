@@ -8,7 +8,7 @@ import Vue from 'vue'
 
 @Vts.Component({
 	components: {
-		'v-search-anything': () => import('@/client/components/search-anything/search-anything'),
+		'v-searchbar': () => import('@/client/components/searchbar/searchbar'),
 	},
 })
 export default class extends Vue {

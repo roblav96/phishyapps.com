@@ -46,17 +46,17 @@ module.exports = {
 				})
 			})
 			// improves memory usage by reducing number of fs.stat calls
-			config.plugins.push(new webpack.WatchIgnorePlugin([/node_modules/, /dist/, /server/]))
+			config.plugins.push(new webpack.WatchIgnorePlugin([/node_modules/, /dist/, /assets/, /server/]))
 		}
 
-		// isolate node_modules
-		config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor', minChunks: ({ context }) => context && context.includes('node_modules'),
-		}))
-		// isolate meta manifests
-		config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-			name: 'manifest', minChunks: Infinity,
-		}))
+		// // isolate node_modules
+		// config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+		// 	name: 'vendor', minChunks: ({ context }) => context && context.includes('node_modules'),
+		// }))
+		// // isolate meta manifests
+		// config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+		// 	name: 'manifest', minChunks: Infinity,
+		// }))
 
 		// bundle size debugger
 		// config.plugins.push(new BundleAnalyzerPlugin())
@@ -69,7 +69,7 @@ module.exports = {
 			args[0]['process.env'].NAME = `"${package.name}"`
 			args[0]['process.env'].VERSION = `"${package.version}"`
 			args[0]['process.env'].DOMAIN = `"${(DEVELOPMENT ? 'http://dev.' : 'https://') + package.domain}"`
-			// import variables defined in config/ 
+			// import variables defined in ./config/
 			let env = dotenv.config({ path: path.resolve(process.cwd(), 'config/client.' + NODE_ENV + '.env') }).parsed || {}
 			Object.keys(env).forEach(k => args[0]['process.env'][k] = `"${env[k]}"`)
 			return args

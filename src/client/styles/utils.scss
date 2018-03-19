@@ -54,6 +54,10 @@ $pair in $colors {
 	text-align: justify !important;
 }
 
+.t-wrap {
+	white-space: normal !important;
+}
+
 .t-nowrap {
 	white-space: nowrap !important;
 }
@@ -378,6 +382,15 @@ $_fxs: (0, 1, 2, 3);
 	.fx-#{$_fx} {
 		flex: $_fx $_fx auto !important;
 	}
+}
+
+.fx-initial {
+	flex: initial !important;
+}
+
+.fx-none {
+	display: block !important;
+	flex: none !important;
 }
 
 .fx-justify-start {

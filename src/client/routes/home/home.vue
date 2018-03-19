@@ -38,9 +38,9 @@ div.home-boxes span.icon > i.mdi:before {
 							</h1>
 							<hr>
 							<h2 class="subtitle">
-								The PhishyApps platform aims to help you automate the process of taking down
+								The PhishyApps platform aims to simplify the process of taking down
 								<i>'phishy'</i> apps published on the iTunes App Store & Google Play Store. Managing these fake
-								malicious imposters has been simplified.
+								malicious imposters is now possible.
 							</h2>
 						</div>
 					</div>
