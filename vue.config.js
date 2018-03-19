@@ -20,13 +20,12 @@ global.PRODUCTION = NODE_ENV == 'production'
 module.exports = {
 
 	outputDir: 'dist/client',
-	dll: true, // faster incremental recompilation, slower initial build
+	dll: DEVELOPMENT, // faster incremental recompilation, slower initial build
 	css: { sourceMap: false }, // only enable when needed
 	vueLoader: { hotReload: false }, // hot reload makes debugging difficult
 
 	configureWebpack: function(config) {
 		config.entry.app = './src/client/main.ts'
-		config.devtool = 'source-map' // increases build size, but needed to debug
 		delete config.node.process // required for `got` http client
 
 		config.output.filename = '[name].bundle.[hash].js'
@@ -34,6 +33,7 @@ module.exports = {
 
 		if (DEVELOPMENT) {
 			// if (process.env.NODE_ENV == 'development') config.watch = true;
+			config.devtool = 'source-map'
 			config.output.filename = '[name].bundle.js'
 			config.output.chunkFilename = 'chunk.[name].js'
 			// assets should not be bundled as long URI strings inside .js bundles
