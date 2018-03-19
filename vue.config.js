@@ -22,7 +22,7 @@ module.exports = {
 	outputDir: 'dist/client',
 	// dll: DEVELOPMENT, // faster incremental recompilation, slower initial build
 	css: { sourceMap: false }, // only enable when needed
-	vueLoader: { hotReload: false }, // hot reload makes debugging difficult
+	// vueLoader: { hotReload: false }, // hot reload makes debugging difficult
 
 	configureWebpack: function(config) {
 		config.entry.app = './src/client/main.ts'

@@ -13,7 +13,7 @@
 		<div class="hero-body fx-align-items-start">
 			<div class="container">
 				<div class="box content">
-					<p>Search for your app then select the ones you want unpublished.</p>
+					<p>Search for your app then take action on select results.</p>
 				</div>
 				<b-field>
 					<b-input ref="search_input" class="is-medium" size="is-medium" type="search" icon="magnify" placeholder="Search App Store & Play Store..."

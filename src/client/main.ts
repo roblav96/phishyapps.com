@@ -1,6 +1,6 @@
 // 
 
-global.NODE_ENV = process.env.NODE_ENV || 'development'
+global.NODE_ENV = process.env.NODE_ENV
 global.DEVELOPMENT = NODE_ENV == 'development'
 global.PRODUCTION = NODE_ENV == 'production'
 
