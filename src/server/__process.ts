@@ -1,10 +1,8 @@
 // 
-
 import 'source-map-support/register'
 import * as eyes from 'eyes'
 eyes.defaults.maxLength = 65536
 eyes.defaults.showHidden = true
-
 // 
 
 import chalk from 'chalk'

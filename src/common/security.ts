@@ -68,12 +68,27 @@ export function decrypt<T = any>(encrypted: T, privatePem: string): T {
 	return decrypted
 }
 
+export function docHmac(uuid: string, bytes: string, hostname: string, prime: string) {
+	// console.log('docHmac', 'uuid', uuid, 'bytes', bytes, 'hostname', hostname, 'prime', prime)
+	return hmac(uuid + bytes + hostname, prime)
+}
+
 
 
 
 
 declare global {
 	namespace Security {
+		interface Doc {
+			id: string
+			uuid: string
+			finger: string
+			ua: string
+			bytes: string
+			prime: string
+			token: string
+			drift: number
+		}
 		interface PemKeyPair {
 			publicPem: string
 			privatePem: string

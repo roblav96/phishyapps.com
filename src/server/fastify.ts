@@ -3,6 +3,7 @@
 import * as eyes from 'eyes'
 import * as _ from 'lodash'
 import * as core from '../common/core'
+import * as security from '../common/security'
 import * as utils from './services/utils'
 
 import * as http from 'http'
@@ -12,7 +13,6 @@ import * as cors from 'cors'
 import * as boom from 'boom'
 import * as cookie from 'cookie'
 import * as got from 'got'
-import * as users from './services/users'
 import * as redis from './adapters/redis'
 
 
@@ -48,13 +48,13 @@ fastify.setErrorHandler(async function(error: boom & { validation: any }, reques
 
 fastify.use(cors({ origin: process.DOMAIN }))
 
-fastify.addHook('preHandler', users.preHandler)
 
 
+import './hooks/security.hook'
 
-import './api/users.api'
-import './api/recaptcha.api'
-import './api/search.api'
+import './apis/security.api'
+import './apis/recaptcha.api'
+import './apis/search.api'
 
 
 
@@ -62,7 +62,7 @@ fastify.listen(process.PORT, process.HOST, function(error) {
 	if (error) return console.error('fastify listen Error >', error);
 	if (process.PRIMARY) {
 		console.log(fastify.printRoutes())
-		console.info('listen >', fastify.server.address().address + ':' + fastify.server.address().port)
+		console.info('fastify listen >', fastify.server.address().address + ':' + fastify.server.address().port)
 	}
 })
 
@@ -82,7 +82,7 @@ declare module 'fastify' {
 		authed: boolean
 		ip: string
 		hostname: string
-		doc: Partial<User.Doc>
+		doc: Partial<Security.Doc>
 	}
 	interface FastifyReply<HttpResponse> {
 		setCookie: (name: string, value: string, opts: cookie.CookieSerializeOptions) => FastifyReply<HttpResponse>

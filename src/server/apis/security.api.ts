@@ -7,14 +7,13 @@ import * as security from '../../common/security'
 
 import fastify from '../fastify'
 import * as boom from 'boom'
-import * as users from '../services/users'
 import * as redis from '../adapters/redis'
 
 
 
 fastify.route({
 	method: 'GET',
-	url: '/api/users/token',
+	url: '/api/security/token',
 	schema: {
 		response: {
 			200: {
@@ -34,7 +33,7 @@ fastify.route({
 			sameSite: true, httpOnly: true, secure: PRODUCTION,
 		})
 
-		let hmac = users.docHmac(request.doc.uuid, bytes, request.hostname, prime)
+		let hmac = security.docHmac(request.doc.uuid, bytes, request.hostname, prime)
 		return { token: hmac }
 
 	},
